@@ -1,0 +1,244 @@
+/* ============================================================ 
+   TRUSTVAULT — FOOTER 
+   Global footer, links, legal, brand closer 
+============================================================ */ 
+
+.footer { 
+    background: var(--color-bg); 
+    border-top: 1px solid var(--color-border); 
+    position: relative; 
+    overflow: hidden; 
+} 
+
+/* Ambient gold bleed top-left */ 
+.footer::before { 
+    content: ''; 
+    position: absolute; 
+    top: -80px; 
+    left: -80px; 
+    width: 400px; 
+    height: 400px; 
+    border-radius: 50%; 
+    background: radial-gradient(circle, rgba(200, 169, 110, 0.05) 0%, transparent 65%); 
+    pointer-events: none; 
+} 
+
+/* ── CTA band ── */ 
+.footer__cta-band { 
+    padding: var(--space-24) 0; 
+    text-align: center; 
+    border-bottom: 1px solid var(--color-border); 
+    position: relative; 
+} 
+
+.footer__cta-eyebrow { 
+    margin-bottom: var(--space-5); 
+} 
+
+.footer__cta-title { 
+    font-family: var(--font-display); 
+    font-size: clamp(2.5rem, 6vw, 5rem); 
+    font-weight: 300; 
+    line-height: 1.05; 
+    letter-spacing: -0.025em; 
+    color: var(--text-primary); 
+    max-width: 700px; 
+    margin: 0 auto var(--space-10); 
+} 
+
+.footer__cta-title .accent { 
+    background: linear-gradient(110deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dim)); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+} 
+
+.footer__cta-buttons { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: var(--space-4); 
+} 
+
+/* ── Main footer grid ── */ 
+.footer__main { 
+    padding: var(--space-16) 0 var(--space-12); 
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1fr 1fr; 
+    gap: var(--space-12); 
+} 
+
+/* Brand column */ 
+.footer__brand {} 
+
+.footer__logo { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-3); 
+    margin-bottom: var(--space-6); 
+} 
+
+.footer__logo-name { 
+    font-family: var(--font-display); 
+    font-size: var(--text-xl); 
+    font-weight: 500; 
+    letter-spacing: 0.04em; 
+} 
+
+.footer__logo-name span { 
+    color: var(--color-gold); 
+} 
+
+.footer__brand-desc { 
+    font-size: var(--text-sm); 
+    color: var(--text-muted); 
+    line-height: 1.75; 
+    max-width: 280px; 
+    margin-bottom: var(--space-8); 
+} 
+
+/* Chain badges */ 
+.footer__chains { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-3); 
+    flex-wrap: wrap; 
+} 
+
+.footer__chain { 
+    font-family: var(--font-mono); 
+    font-size: 0.6rem; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    padding: 4px 10px; 
+    border: 1px solid var(--color-border); 
+    border-radius: var(--radius-pill); 
+    color: var(--text-muted); 
+    transition: border-color var(--dur-base), color var(--dur-base); 
+} 
+
+.footer__chain:hover { 
+    border-color: var(--color-gold-dim); 
+    color: var(--color-gold); 
+} 
+
+/* Link columns */ 
+.footer__col-title { 
+    font-family: var(--font-mono); 
+    font-size: var(--text-xs); 
+    letter-spacing: 0.18em; 
+    text-transform: uppercase; 
+    color: var(--text-secondary); 
+    margin-bottom: var(--space-6); 
+} 
+
+.footer__links { 
+    display: flex; 
+    flex-direction: column; 
+    gap: var(--space-3); 
+} 
+
+.footer__link { 
+    font-size: var(--text-sm); 
+    color: var(--text-muted); 
+    transition: color var(--dur-base), padding-left var(--dur-base) var(--ease-out-expo); 
+    display: inline-block; 
+} 
+
+.footer__link:hover { 
+    color: var(--text-secondary); 
+    padding-left: 6px; 
+} 
+
+/* ── Bottom strip ── */ 
+.footer__bottom { 
+    padding: var(--space-6) 0; 
+    border-top: 1px solid var(--color-border); 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: var(--space-6); 
+} 
+
+.footer__legal { 
+    font-family: var(--font-mono); 
+    font-size: 0.62rem; 
+    letter-spacing: 0.1em; 
+    color: var(--text-muted); 
+} 
+
+.footer__legal-links { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-6); 
+} 
+
+.footer__legal-link { 
+    font-family: var(--font-mono); 
+    font-size: 0.62rem; 
+    letter-spacing: 0.1em; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    transition: color var(--dur-base); 
+} 
+
+.footer__legal-link:hover { 
+    color: var(--text-secondary); 
+} 
+
+.footer__separator { 
+    color: var(--color-border-hover); 
+} 
+
+/* Audit badge */ 
+.footer__audit { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-2); 
+    padding: 5px 12px; 
+    border: 1px solid rgba(0, 200, 150, 0.18); 
+    border-radius: var(--radius-pill); 
+    background: rgba(0, 200, 150, 0.04); 
+} 
+
+.footer__audit-dot { 
+    width: 6px; 
+    height: 6px; 
+    border-radius: 50%; 
+    background: var(--color-success); 
+    animation: footerPulse 2.5s ease-in-out infinite; 
+} 
+
+@keyframes footerPulse { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0.5; } 
+} 
+
+.footer__audit-text { 
+    font-family: var(--font-mono); 
+    font-size: 0.6rem; 
+    letter-spacing: 0.12em; 
+    text-transform: uppercase; 
+    color: var(--color-success); 
+} 
+
+/* ── Responsive ── */ 
+@media (max-width: 1024px) { 
+    .footer__main { grid-template-columns: 1fr 1fr; gap: var(--space-10); } 
+    .footer__brand { grid-column: span 2; } 
+} 
+
+@media (max-width: 640px) { 
+    .footer__main { grid-template-columns: 1fr 1fr; gap: var(--space-8); } 
+    .footer__brand { grid-column: span 2; } 
+    .footer__cta-buttons { flex-direction: column; } 
+    .footer__cta-buttons .btn-primary, 
+    .footer__cta-buttons .btn-ghost { width: 100%; justify-content: center; } 
+    .footer__bottom { flex-direction: column; align-items: flex-start; gap: var(--space-4); } 
+    .footer__legal-links { flex-wrap: wrap; gap: var(--space-3); } 
+} 
+
+@media (max-width: 480px) { 
+    .footer__main { grid-template-columns: 1fr; } 
+    .footer__brand { grid-column: span 1; } 
+}

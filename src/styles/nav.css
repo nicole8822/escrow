@@ -1,18 +1,206 @@
-.nav-glass {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.wallet-btn {
-  background: #FFD700;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
+/* ============================================================ 
+   TRUSTVAULT — NAVIGATION 
+   Sticky glass nav, logo, links, CTA 
+============================================================ */ 
+
+.nav { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 100; 
+    height: var(--nav-height); 
+    display: flex; 
+    align-items: center; 
+    transition: background var(--dur-slow), border-color var(--dur-slow), backdrop-filter var(--dur-slow); 
+} 
+
+.nav.scrolled { 
+    background: rgba(9,9,15,0.85); 
+    border-bottom: 1px solid var(--color-border); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px); 
+} 
+
+.nav__inner { 
+    width: 100%; 
+    max-width: var(--max-width); 
+    margin: 0 auto; 
+    padding: 0 var(--space-8); 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+} 
+
+/* Logo */ 
+.nav__logo { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-3); 
+} 
+
+.nav__logo-mark { 
+    width: 32px; 
+    height: 32px; 
+    position: relative; 
+} 
+
+.nav__logo-mark svg { 
+    width: 100%; 
+    height: 100%; 
+} 
+
+.nav__logo-name { 
+    font-family: var(--font-display); 
+    font-size: var(--text-xl); 
+    font-weight: 500; 
+    letter-spacing: 0.04em; 
+    color: var(--text-primary); 
+} 
+
+.nav__logo-name span { 
+    color: var(--color-gold); 
+} 
+
+/* Links */ 
+.nav__links { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-8); 
+} 
+
+.nav__link { 
+    font-size: var(--text-sm); 
+    font-weight: 400; 
+    letter-spacing: 0.04em; 
+    color: var(--text-secondary); 
+    position: relative; 
+    transition: color var(--dur-base); 
+} 
+
+.nav__link::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -4px; 
+    left: 0; 
+    width: 0; 
+    height: 1px; 
+    background: var(--color-gold); 
+    transition: width var(--dur-base) var(--ease-out-expo); 
+} 
+
+.nav__link:hover { 
+    color: var(--text-primary); 
+} 
+
+.nav__link:hover::after { 
+    width: 100%; 
+} 
+
+/* Nav right */ 
+.nav__actions { 
+    display: flex; 
+    align-items: center; 
+    gap: var(--space-4); 
+} 
+
+.nav__lang { 
+    font-family: var(--font-mono); 
+    font-size: var(--text-xs); 
+    letter-spacing: 0.12em; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    padding: var(--space-2) var(--space-3); 
+    border: 1px solid var(--color-border); 
+    border-radius: var(--radius-sm); 
+    transition: color var(--dur-base), border-color var(--dur-base); 
+} 
+
+.nav__lang:hover { 
+    color: var(--text-secondary); 
+    border-color: var(--color-border-hover); 
+} 
+
+.nav__signin { 
+    font-size: var(--text-sm); 
+    font-weight: 400; 
+    color: var(--text-secondary); 
+    transition: color var(--dur-base); 
+} 
+
+.nav__signin:hover { 
+    color: var(--text-primary); 
+} 
+
+/* Mobile hamburger */ 
+.nav__hamburger { 
+    display: none; 
+    flex-direction: column; 
+    gap: 5px; 
+    padding: var(--space-2); 
+} 
+
+.nav__hamburger span { 
+    display: block; 
+    width: 22px; 
+    height: 1px; 
+    background: var(--text-secondary); 
+    transition: transform var(--dur-base), opacity var(--dur-base); 
+} 
+
+.nav__hamburger.open span:nth-child(1) { 
+    transform: translateY(6px) rotate(45deg); 
+} 
+
+.nav__hamburger.open span:nth-child(2) { 
+    opacity: 0; 
+} 
+
+.nav__hamburger.open span:nth-child(3) { 
+    transform: translateY(-6px) rotate(-45deg); 
+} 
+
+/* Mobile drawer */ 
+.nav__drawer { 
+    position: fixed; 
+    top: var(--nav-height); 
+    left: 0; 
+    right: 0; 
+    background: rgba(9,9,15,0.98); 
+    border-bottom: 1px solid var(--color-border); 
+    backdrop-filter: blur(20px); 
+    padding: var(--space-8); 
+    transform: translateY(-100%); 
+    opacity: 0; 
+    transition: transform var(--dur-slow) var(--ease-out-expo), opacity var(--dur-base); 
+    pointer-events: none; 
+    z-index: 99; 
+} 
+
+.nav__drawer.open { 
+    transform: translateY(0); 
+    opacity: 1; 
+    pointer-events: all; 
+} 
+
+.nav__drawer-link { 
+    display: block; 
+    padding: var(--space-4) 0; 
+    font-family: var(--font-display); 
+    font-size: var(--text-2xl); 
+    font-weight: 300; 
+    color: var(--text-secondary); 
+    border-bottom: 1px solid var(--color-border); 
+    transition: color var(--dur-base), padding-left var(--dur-base) var(--ease-out-expo); 
+} 
+
+.nav__drawer-link:hover { 
+    color: var(--color-gold); 
+    padding-left: var(--space-4); 
+} 
+
+@media (max-width: 900px) { 
+    .nav__links { display: none; } 
+    .nav__lang, .nav__signin { display: none; } 
+    .nav__hamburger { display: flex; } 
 }

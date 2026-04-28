@@ -2,7 +2,7 @@ PROTO_SRC=proto/trade.proto
 GO_OUT=shared/gen/go
 TS_OUT=shared/gen/ts
 
-.PHONY: all gen-proto build-rust clean
+.PHONY: all gen-proto build-rust clean run
 
 all: gen-proto build-rust
 
@@ -15,6 +15,9 @@ build-rust:
 	cd core/validator && cargo build --release
 	cp core/validator/target/release/libvalidator.a .
 	cp core/validator/bridge.h .
+
+run:
+	(go run core/orchestrator/main.go & npm run dev)
 
 clean:
 	rm -rf shared/gen/*
