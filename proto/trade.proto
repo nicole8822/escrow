@@ -1,0 +1,25 @@
+syntax = "proto3";
+package trustvault;
+option go_package = "shared/gen/go/proto";
+
+enum TradeStatus {
+  PENDING_FUNDING = 0;
+  FUNDS_LOCKED = 1;
+  IN_TRANSIT = 2;
+  DELIVERED = 3;
+  UNBOXING_IN_PROGRESS = 4;
+  COMPLETED = 5;
+  DISPUTED = 6;
+}
+
+message Trade {
+  string trade_id = 1;
+  string buyer_address = 2;
+  string seller_address = 3;
+  double amount_fiat = 4;
+  double insurance_crypto = 5;
+  string tracking_number = 6;
+  string carrier = 7; 
+  TradeStatus status = 8;
+  string video_hash = 9;
+}

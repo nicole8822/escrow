@@ -1,0 +1,12 @@
+[package]
+name = "validator"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "validator"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+# For hashing the unboxing video and logistics data
+sha2 = "0.10"

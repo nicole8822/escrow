@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  orchestrator:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file: .env
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: trustvault
+    volumes:
+      - ./data/schema.sql:/docker-entrypoint-initdb.d/schema.sql
