@@ -41,12 +41,12 @@ const Navbar = () => {
 
     return (
         <header ref={navRef}>
-            {/* ── Main Nav — class extended to the CSS system ── */}
-            <nav className={`nav nav-glass ${scrolled ? 'scrolled' : ''}`}>
+            {/* ── Main Nav ── */}
+            <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
                 <div className="nav__inner">
                     
                     {/* Brand Logo Section */}
-                    <div className="nav__logo logo gold-text">
+                    <div className="nav__logo">
                         <div className="nav__logo-mark">
                             <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <polygon points="16,2 30,10 30,22 16,30 2,22 2,10" stroke="#C8A96E" strokeWidth="1" fill="none" opacity="0.6" />
@@ -60,7 +60,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Navigation Links */}
-                    <div className="nav-links nav__links">
+                    <div className="nav__links">
                         {links.map(({ href, label }) => (
                             <a 
                                 key={href} 
@@ -79,7 +79,7 @@ const Navbar = () => {
                     {/* Global Actions */}
                     <div className="nav__actions">
                         <span className="nav__lang">EN</span>
-                        <button className="wallet-btn btn-primary nav__wallet-btn">
+                        <button className="nav__wallet-btn">
                             Connect Wallet
                         </button>
 
@@ -112,8 +112,8 @@ const Navbar = () => {
                         {label}
                     </a>
                 ))}
-                <div style={{ marginTop: '2rem' }}>
-                    <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                <div className="nav__drawer-footer">
+                    <button className="nav__drawer-btn">
                         Connect Wallet
                     </button>
                 </div>

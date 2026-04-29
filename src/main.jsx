@@ -23,5 +23,3 @@ ReactDOM.createRoot(rootElement).render(
     <App />
   </React.StrictMode>
 );
-
-// Optional: Analytics or Performance monitoring could be initialized here

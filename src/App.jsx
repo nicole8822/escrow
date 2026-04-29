@@ -1,58 +1,49 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 
-// Only one CSS import needed - the master manifest
+// Master CSS import
 import './styles/global.css';
+
+// Helper to handle Scroll Reveals on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   return (
     <Router>
-      <div className="app-root">
-        {/* Navigation remains persistent across routes */}
+      <ScrollToTop />
+      <div className="app-root" id="root">
         <Navbar />
 
-        {/* Main Application Canvas */}
+        {/* ── Main Application Canvas ── */}
         <main className="app-content">
+          {/* Container removed from here to allow full-bleed backgrounds in Hero/Sections */}
           <Routes>
-            {/* Landing & Trade Initialization */}
             <Route path="/" element={<Home />} />
-            
-            {/* User Portfolio & Trade Tracking */}
             <Route path="/dashboard" element={<Dashboard />} />
-            
-            {/* UX Alias for navigation consistency */}
             <Route path="/trades" element={<Dashboard />} />
           </Routes>
         </main>
 
-        {/* TrustVault Global Footer */}
-        <footer className="footer-simple" style={{ 
-          padding: '60px 0 40px', 
-          textAlign: 'center', 
-          borderTop: '1px solid var(--color-border)',
-          marginTop: 'auto',
-          background: 'var(--color-bg)'
-        }}>
+        {/* ── TrustVault Global Footer ── */}
+        <footer className="footer-simple glass glass--dark">
           <div className="container">
-            <p className="mono" style={{ 
-                fontSize: '0.6rem', 
-                color: 'var(--text-muted)', 
-                letterSpacing: '0.2em', 
-                textTransform: 'uppercase' 
-            }}>
-              Protocol Status: <span style={{ color: 'var(--color-success)' }}>Operational</span>
-            </p>
-            <p className="mono" style={{ 
-                fontSize: '0.55rem', 
-                color: 'var(--color-border-hover)', 
-                marginTop: '1rem',
-                letterSpacing: '0.1em' 
-            }}>
-              TRUSTVAULT ESCROW ENGINE © 2026 // NO PERMISSION REQUIRED
-            </p>
+            <div className="footer-content" style={{ padding: 'var(--space-8) 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <p className="mono footer-status">
+                Protocol Status: <span className="status-online" style={{ color: 'var(--color-success)' }}>● Operational</span>
+              </p>
+              <p className="mono footer-copyright" style={{ opacity: 0.5, fontSize: 'var(--text-xs)' }}>
+                TRUSTVAULT ESCROW ENGINE © 2026 // NO PERMISSION REQUIRED
+              </p>
+            </div>
           </div>
         </footer>
       </div>
