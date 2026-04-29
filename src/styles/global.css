@@ -1,108 +1,56 @@
-/* ============================================================ 
-   TRUSTVAULT — MOBILE RECOVERY CORE
-   Logic: Kill all absolute collisions. Force natural flow.
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+@import './glass.css';
+@import './nav.css';
+@import './footer.css';
+@import './hero.css';
+@import './how-it-works.css';
+@import './dashboard.css';
 
 :root {
-    --c-bg: #09090F;
-    --c-surface: #0D0D1A;
-    --c-gold: #C8A96E;
-    --t-primary: #F0EDE8;
-    --f-display: 'Cormorant Garamond', serif;
-    --f-body: 'DM Sans', sans-serif;
+  --bg-deep: #020617; 
+  --gold-primary: #FFD700;
+  --gold-liquid: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --container-width: 1000px;
 }
 
-/* ── RESET STACK ── */
-*, *::before, *::after { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
-    width: 100%;
-    min-height: 100%;
-    background: var(--c-bg);
-    color: var(--t-primary);
-    font-family: var(--f-body);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* ── FORCED VERTICAL FLOW ── */
-/* This stops sections from overlapping */
-.page-section {
-    position: relative !important;
-    display: block !important;
-    width: 100% !important;
-    height: auto !important; 
-    min-height: auto !important;
-    padding: 60px 0;
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: 'Space Grotesk', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  width: 100%;
+  max-width: var(--container-width);
+  padding: 0 2rem;
+  margin: 0 auto;
 }
 
-/* ── GRID SYSTEM ── */
-.grid-2, .grid-3, .grid-4 {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.btn-ingot {
+  background: var(--gold-liquid);
+  color: #000;
+  border-radius: 8px;
+  padding: 1.2rem 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.gold-text {
+  background: var(--gold-liquid);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ── HERO SECTION RECOVERY ── */
-.t-display {
-    font-family: var(--f-display);
-    font-size: 3rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-/* ── BUTTON FIXES ── */
-.btn {
-    display: flex;
-    width: 100%;
-    max-width: 320px;
-    padding: 18px;
-    background: var(--c-gold);
-    color: #000;
-    text-decoration: none;
-    justify-content: center;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-/* ── THE ESCROW CARD FIX ── */
-/* Ensuring the "Initialize Secure Settlement" card stays in line */
-.escrow-card {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    transform: none !important;
-    background: var(--c-surface);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 24px;
-    margin-top: 40px;
-    width: 100%;
-}
-
-input {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #fff;
-    margin-bottom: 15px;
-}
+.mono { font-family: 'Space Mono', monospace; }

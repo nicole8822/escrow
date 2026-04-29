@@ -1,257 +1,37 @@
-/* ============================================================ 
-   TRUSTVAULT — HOW IT WORKS 
-   Step-by-step trade lifecycle visualization 
-============================================================ */ 
+.how-it-works {
+  padding-top: 100px;
+  z-index: 1; /* Below the terminal */
+}
 
-.hiw { 
-    padding: var(--space-32) 0; 
-    background: var(--color-bg); 
-} 
+.timeline-spine {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 60px;
+}
 
-.hiw__header { 
-    text-align: center; 
-    margin-bottom: var(--space-24); 
-} 
+.step-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 2.5rem;
+}
 
-.hiw__eyebrow { 
-    margin-bottom: var(--space-4); 
-} 
+/* 📐 THE ASYMMETRIC FLIP: Desktop only */
+@media (min-width: 1024px) {
+  .step-card:nth-child(even) {
+    align-self: flex-end;
+    margin-right: 50px;
+  }
+  .step-card:nth-child(odd) {
+    align-self: flex-start;
+    margin-left: 50px;
+  }
+}
 
-.hiw__title { 
-    font-family: var(--font-display); 
-    font-size: clamp(2.5rem, 5vw, 4.5rem); 
-    font-weight: 300; 
-    line-height: 1.05; 
-    letter-spacing: -0.02em; 
-    max-width: 600px; 
-    margin: 0 auto var(--space-6); 
-} 
-
-.hiw__sub { 
-    max-width: 520px; 
-    margin: 0 auto; 
-} 
-
-/* ── Timeline Layout ── */ 
-
-.hiw__timeline { 
-    position: relative; 
-    max-width: 900px; 
-    margin: 0 auto; 
-    padding: var(--space-8) 0; 
-} 
-
-/* Central spine */ 
-.hiw__spine { 
-    position: absolute; 
-    left: 50%; 
-    top: 0; 
-    bottom: 0; 
-    width: 1px; 
-    transform: translateX(-50%); 
-    background: linear-gradient(to bottom, transparent, var(--color-border-hover) 10%, var(--color-border-hover) 90%, transparent); 
-} 
-
-.hiw__spine-fill { 
-    position: absolute; 
-    left: 50%; 
-    top: 0; 
-    width: 1px; 
-    transform: translateX(-50%); 
-    background: linear-gradient(to bottom, var(--color-gold), var(--color-accent)); 
-    height: 0%; 
-    transition: height 1.5s var(--ease-out-expo); 
-} 
-
-.hiw__spine-fill.animated { 
-    height: 100%; 
-} 
-
-/* Steps */ 
-.hiw__step { 
-    display: grid; 
-    grid-template-columns: 1fr 64px 1fr; 
-    gap: 0 var(--space-6); 
-    align-items: start; 
-    margin-bottom: var(--space-12); 
-    position: relative; 
-} 
-
-.hiw__step:last-child { 
-    margin-bottom: 0; 
-} 
-
-/* Step number node */ 
-.hiw__node { 
-    grid-column: 2; 
-    width: 48px; 
-    height: 48px; 
-    margin: 0 auto; 
-    border-radius: 50%; 
-    border: 1px solid var(--color-border-hover); 
-    background: var(--color-surface); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: var(--font-mono); 
-    font-size: var(--text-xs); 
-    letter-spacing: 0.05em; 
-    color: var(--color-gold); 
-    position: relative; 
-    z-index: 1; 
-    transition: border-color var(--dur-base), background var(--dur-base), box-shadow var(--dur-base); 
-} 
-
-.hiw__node.active { 
-    border-color: var(--color-gold); 
-    background: rgba(200,169,110,0.1); 
-    box-shadow: 0 0 24px rgba(200,169,110,0.2); 
-} 
-
-/* Left / right card positioning */ 
-.hiw__step--right .hiw__card-wrap { 
-    grid-column: 3; 
-    grid-row: 1; 
-} 
-
-.hiw__step--right .hiw__card-placeholder { 
-    grid-column: 1; 
-    grid-row: 1; 
-} 
-
-.hiw__step--left .hiw__card-wrap { 
-    grid-column: 1; 
-    grid-row: 1; 
-    text-align: right; 
-} 
-
-.hiw__step--left .hiw__card-placeholder { 
-    grid-column: 3; 
-    grid-row: 1; 
-} 
-
-/* Step card */ 
-.hiw__card { 
-    padding: var(--space-6); 
-    position: relative; 
-} 
-
-.hiw__step-num { 
-    font-family: var(--font-mono); 
-    font-size: var(--text-xs); 
-    letter-spacing: 0.15em; 
-    text-transform: uppercase; 
-    color: var(--color-gold-dim); 
-    margin-bottom: var(--space-2); 
-} 
-
-.hiw__step-title { 
-    font-family: var(--font-display); 
-    font-size: var(--text-2xl); 
-    font-weight: 400; 
-    color: var(--text-primary); 
-    margin-bottom: var(--space-3); 
-    line-height: 1.2; 
-} 
-
-.hiw__step-desc { 
-    font-size: var(--text-sm); 
-    color: var(--text-secondary); 
-    line-height: 1.7; 
-} 
-
-/* State badge inside step */ 
-.hiw__step-state { 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 6px; 
-    margin-top: var(--space-4); 
-    padding: 5px 12px; 
-    border-radius: var(--radius-pill); 
-    font-family: var(--font-mono); 
-    font-size: 0.65rem; 
-    letter-spacing: 0.12em; 
-    text-transform: uppercase; 
-    border: 1px solid; 
-} 
-
-.hiw__step-state--created { border-color: rgba(255,255,255,0.1); color: var(--text-muted); } 
-.hiw__step-state--funded { border-color: rgba(200,169,110,0.3); color: var(--color-gold); } 
-.hiw__step-state--active { border-color: rgba(26,107,255,0.3); color: var(--color-accent); } 
-.hiw__step-state--delivered{ border-color: rgba(245,166,35,0.3); color: var(--color-warn); } 
-.hiw__step-state--confirmed{ border-color: rgba(0,200,150,0.3); color: var(--color-success); } 
-.hiw__step-state--released { 
-    border-color: rgba(0,200,150,0.5); 
-    color: var(--color-success); 
-    background: rgba(0,200,150,0.06); 
-} 
-
-/* Rule chips */ 
-.hiw__rules { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: var(--space-2); 
-    margin-top: var(--space-3); 
-} 
-
-.hiw__step--left .hiw__rules { 
-    justify-content: flex-end; 
-} 
-
-.hiw__rule { 
-    font-family: var(--font-mono); 
-    font-size: 0.65rem; 
-    letter-spacing: 0.08em; 
-    padding: 3px 8px; 
-    border: 1px solid var(--color-border); 
-    border-radius: var(--radius-sm); 
-    color: var(--text-muted); 
-} 
-
-/* Bottom note */ 
-.hiw__note { 
-    margin-top: var(--space-16); 
-    padding: var(--space-6) var(--space-8); 
-    border: 1px solid var(--color-border); 
-    border-radius: var(--radius-lg); 
-    display: flex; 
-    align-items: center; 
-    gap: var(--space-4); 
-    max-width: 600px; 
-    margin-left: auto; 
-    margin-right: auto; 
-    background: rgba(255,255,255,0.02); 
-} 
-
-.hiw__note-icon { 
-    font-size: var(--text-2xl); 
-    flex-shrink: 0; 
-} 
-
-.hiw__note-text { 
-    font-size: var(--text-sm); 
-    color: var(--text-secondary); 
-    line-height: 1.6; 
-} 
-
-.hiw__note-text strong { 
-    color: var(--color-gold); 
-    font-weight: 400; 
-} 
-
-@media (max-width: 768px) { 
-    .hiw__timeline { padding: 0 var(--space-4); } 
-    .hiw__spine { left: 24px; } 
-    .hiw__spine-fill { left: 24px; } 
-    .hiw__step { grid-template-columns: 48px 1fr; gap: 0 var(--space-4); } 
-    .hiw__node { margin: 0; } 
-    .hiw__step--right .hiw__card-wrap, 
-    .hiw__step--left .hiw__card-wrap { 
-        grid-column: 2; 
-        grid-row: 1; 
-        text-align: left; 
-    } 
-    .hiw__step--right .hiw__card-placeholder, 
-    .hiw__step--left .hiw__card-placeholder { display: none; } 
-    .hiw__step--left .hiw__rules { justify-content: flex-start; } 
+.step-node {
+  font-family: 'Space Mono';
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+  display: block;
 }

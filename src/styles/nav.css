@@ -1,147 +1,31 @@
-/* ============================================================
-   TRUSTVAULT — NAVIGATION (MOBILE RECOVERY)
-   Fixed: 3-zone collision, simplified flex logic.
-   ============================================================ */
-
-:root {
-    --nav-h: 72px;
-    --page-margin: clamp(1rem, 5vw, 40px);
-}
-
-/* ── NAV SHELL ── */
-.nav {
+.nav-glass {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--nav-h);
+  top: 0; width: 100%;
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  background: rgba(9, 9, 15, 0.1);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  padding: 1.2rem 0;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
 }
 
-.nav.scrolled {
-  height: 64px;
-  background: rgba(9, 9, 15, 0.95);
-  border-bottom-color: rgba(200, 169, 110, 0.2);
-}
-
-.nav__inner {
-  width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 var(--page-margin);
+.nav-flex {
   display: flex;
-  justify-content: space-between; /* Keeps Logo left, Hamburger right */
+  justify-content: space-between;
   align-items: center;
 }
 
-/* ── LOGO ── */
-.nav__logo {
+.nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  z-index: 1001;
+  gap: 2rem;
 }
 
-.nav__logo-mark {
-  width: 24px;
-  height: 24px;
+.nav-wallet-btn {
+  padding: 0.6rem 1.5rem !important; /* Tighter for nav */
+  font-size: 0.8rem !important;
 }
 
-.nav__logo-name {
-  font-family: var(--f-display);
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: #fff;
-}
-
-.nav__logo-name span { color: var(--c-gold); }
-
-/* ── DESKTOP LINKS (HIDDEN ON MOBILE) ── */
-.nav__links {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .nav__links {
-    display: flex;
-    gap: 2rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-.nav__link {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav__link:hover { color: var(--c-gold); }
-
-/* ── HAMBURGER ── */
-.nav__hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 1001;
-  padding: 10px;
-}
-
-.nav__hamburger span {
-  width: 20px;
-  height: 1px;
-  background: #fff;
-  transition: 0.3s;
-}
-
-/* ── MOBILE DRAWER ── */
-.nav__drawer {
-  position: fixed;
-  inset: 0;
-  background: #09090F;
-  display: flex;
-  flex-direction: column;
-  padding: 100px 40px;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav__drawer.open {
-  transform: translateX(0);
-}
-
-.nav__drawer-link {
-  font-family: var(--f-display);
-  font-size: 2.5rem;
-  color: #fff;
-  text-decoration: none;
-  margin-bottom: 20px;
-}
-
-/* ── ACTIONS ── */
-.nav__actions {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .nav__actions {
-    display: flex;
-    align-items: center;
-  }
-  .nav__hamburger { display: none; }
+@media (max-width: 768px) {
+  .hide-mobile { display: none; }
+  .logo { font-size: 1.2rem; }
 }

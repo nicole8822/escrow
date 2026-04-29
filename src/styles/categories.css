@@ -1,256 +1,30 @@
-/* ============================================================ 
-   TRUSTVAULT — TRADE CATEGORIES 
-   Modular category grid with rule engines per type 
-============================================================ */ 
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    padding: 100px 0;
+}
 
-.categories { 
-    padding: var(--space-32) 0; 
-    background: var(--color-bg); 
-    position: relative; 
-    overflow: hidden; 
-} 
+.category-card {
+    grid-column: span 4;
+    height: 300px;
+    transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    overflow: hidden;
+}
 
-/* Ambient bleed from top */ 
-.categories::before { 
-    content: ''; 
-    position: absolute; 
-    top: 0; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    width: 800px; 
-    height: 1px; 
-    background: linear-gradient(90deg, transparent, var(--color-border-hover), transparent); 
-} 
+.category-card:nth-child(2) { grid-column: span 8; } /* Large featured slot */
 
-/* ── Header ── */ 
-.categories__header { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: var(--space-8); 
-    align-items: end; 
-    margin-bottom: var(--space-16); 
-} 
+.category-card:hover {
+    background: rgba(255, 215, 0, 0.08);
+    transform: scale(0.98);
+}
 
-.categories__title { 
-    font-family: var(--font-display); 
-    font-size: clamp(2.5rem, 5vw, 4.5rem); 
-    font-weight: 300; 
-    line-height: 1.05; 
-    letter-spacing: -0.02em; 
-} 
-
-.categories__desc { 
-    font-size: var(--text-base); 
-    color: var(--text-secondary); 
-    line-height: 1.75; 
-    max-width: 400px; 
-    justify-self: end; 
-    align-self: end; 
-} 
-
-/* ── Category grid ── */ 
-.categories__grid { 
-    display: grid; 
-    grid-template-columns: repeat(12, 1fr); 
-    grid-template-rows: auto auto; 
-    gap: var(--space-4); 
-} 
-
-/* Spanning rules for editorial asymmetry */ 
-.cat-card:nth-child(1) { grid-column: span 5; } 
-.cat-card:nth-child(2) { grid-column: span 4; } 
-.cat-card:nth-child(3) { grid-column: span 3; } 
-.cat-card:nth-child(4) { grid-column: span 3; } 
-.cat-card:nth-child(5) { grid-column: span 5; } 
-.cat-card:nth-child(6) { grid-column: span 4; } 
-
-/* ── Category card ── */ 
-.cat-card { 
-    padding: var(--space-8); 
-    border-radius: var(--radius-lg); 
-    border: 1px solid var(--color-border); 
-    background: rgba(255, 255, 255, 0.025); 
-    position: relative; 
-    overflow: hidden; 
-    cursor: none; 
-    transition: border-color var(--dur-base), background var(--dur-base), transform var(--dur-slow) var(--ease-out-expo); 
-    display: flex; 
-    flex-direction: column; 
-    gap: var(--space-6); 
-    min-height: 240px; 
-} 
-
-/* Top-left corner accent line */ 
-.cat-card::before { 
-    content: ''; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 32px; 
-    height: 2px; 
-    background: var(--cat-color, var(--color-gold)); 
-    transition: width var(--dur-slow) var(--ease-out-expo); 
-} 
-
-.cat-card:hover { 
-    border-color: var(--color-border-hover); 
-    background: rgba(255, 255, 255, 0.04); 
-    transform: translateY(-3px); 
-} 
-
-.cat-card:hover::before { 
-    width: 64px; 
-} 
-
-/* Background watermark icon */ 
-.cat-card__watermark { 
-    position: absolute; 
-    bottom: -20px; 
-    right: -20px; 
-    font-size: 7rem; 
-    opacity: 0.04; 
-    pointer-events: none; 
-    transition: opacity var(--dur-slow), transform var(--dur-slow) var(--ease-out-expo); 
-    line-height: 1; 
-} 
-
-.cat-card:hover .cat-card__watermark { 
-    opacity: 0.07; 
-    transform: scale(1.08) translate(-4px, -4px); 
-} 
-
-/* ── Card inner ── */ 
-.cat-card__top { 
-    display: flex; 
-    align-items: flex-start; 
-    justify-content: space-between; 
-    gap: var(--space-4); 
-} 
-
-.cat-card__icon { 
-    width: 40px; 
-    height: 40px; 
-    border-radius: var(--radius-md); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2rem; 
-    background: color-mix(in srgb, var(--cat-color, var(--color-gold)) 12%, transparent); 
-    border: 1px solid color-mix(in srgb, var(--cat-color, var(--color-gold)) 25%, transparent); 
-    flex-shrink: 0; 
-} 
-
-.cat-card__index { 
-    font-family: var(--font-mono); 
-    font-size: 0.62rem; 
-    letter-spacing: 0.14em; 
-    color: var(--text-muted); 
-    padding-top: 4px; 
-} 
-
-.cat-card__name { 
-    font-family: var(--font-display); 
-    font-size: var(--text-2xl); 
-    font-weight: 400; 
-    color: var(--text-primary); 
-    line-height: 1.2; 
-    letter-spacing: -0.01em; 
-} 
-
-.cat-card__desc { 
-    font-size: var(--text-sm); 
-    color: var(--text-secondary); 
-    line-height: 1.7; 
-    flex: 1; 
-} 
-
-/* Rule chips */ 
-.cat-card__rules { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: var(--space-2); 
-    margin-top: auto; 
-} 
-
-.cat-card__rule { 
-    font-family: var(--font-mono); 
-    font-size: 0.62rem; 
-    letter-spacing: 0.08em; 
-    padding: 4px 9px; 
-    border-radius: var(--radius-sm); 
-    border: 1px solid var(--color-border); 
-    color: var(--text-muted); 
-    white-space: nowrap; 
-    transition: border-color var(--dur-base), color var(--dur-base); 
-} 
-
-.cat-card:hover .cat-card__rule { 
-    border-color: color-mix(in srgb, var(--cat-color, var(--color-gold)) 30%, transparent); 
-    color: color-mix(in srgb, var(--cat-color, var(--color-gold)) 70%, var(--text-muted)); 
-} 
-
-/* Color per category via custom property */ 
-.cat-card--crypto { --cat-color: #00C896; } 
-.cat-card--physical { --cat-color: #C8A96E; } 
-.cat-card--digital { --cat-color: #1A6BFF; } 
-.cat-card--services { --cat-color: #A78BFA; } 
-.cat-card--fiat { --cat-color: #F5A623; } 
-.cat-card--giftcard { --cat-color: #EF476F; } 
-
-/* ── Bottom strip — "anything" note ── */ 
-.categories__footer { 
-    margin-top: var(--space-8); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: var(--space-6); 
-} 
-
-.categories__footer-line { 
-    flex: 1; 
-    height: 1px; 
-    background: linear-gradient(to right, transparent, var(--color-border-hover)); 
-} 
-
-.categories__footer-line:last-child { 
-    background: linear-gradient(to left, transparent, var(--color-border-hover)); 
-} 
-
-.categories__footer-text { 
-    font-family: var(--font-mono); 
-    font-size: var(--text-xs); 
-    letter-spacing: 0.18em; 
-    text-transform: uppercase; 
-    color: var(--text-muted); 
-    white-space: nowrap; 
-} 
-
-.categories__footer-text strong { 
-    color: var(--color-gold); 
-    font-weight: 500; 
-} 
-
-/* ── Responsive ── */ 
-@media (max-width: 1024px) { 
-    .categories__grid { grid-template-columns: repeat(6, 1fr); } 
-    .cat-card:nth-child(1) { grid-column: span 3; } 
-    .cat-card:nth-child(2) { grid-column: span 3; } 
-    .cat-card:nth-child(3) { grid-column: span 2; } 
-    .cat-card:nth-child(4) { grid-column: span 2; } 
-    .cat-card:nth-child(5) { grid-column: span 2; } 
-    .cat-card:nth-child(6) { grid-column: span 6; } 
-} 
-
-@media (max-width: 768px) { 
-    .categories__header { grid-template-columns: 1fr; gap: var(--space-4); } 
-    .categories__desc { justify-self: start; } 
-    .categories__grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); } 
-    .cat-card:nth-child(n) { grid-column: span 1; } 
-    .cat-card:nth-child(1) { grid-column: span 2; } 
-    .cat-card { min-height: 180px; } 
-} 
-
-@media (max-width: 480px) { 
-    .categories__grid { grid-template-columns: 1fr; } 
-    .cat-card:nth-child(n) { grid-column: span 1; } 
+.category-label {
+    font-family: 'Space Mono';
+    font-size: 0.7rem;
+    color: var(--gold-primary);
 }

@@ -1,118 +1,39 @@
-/* ============================================================
-   TRUSTVAULT — HERO SECTION (FIXED STATS & SPACING)
-   ============================================================ */
-
 .hero {
+  padding: 160px 0 80px;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.1;
+  margin: 1.5rem 0;
+  font-weight: 800;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+
+.step-list {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-top: var(--nav-h);
-  padding-bottom: clamp(var(--sp-12), 8vh, var(--sp-24));
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  min-height: 100svh;
+  gap: 1.5rem;
+  text-align: left;
 }
 
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+.step-item {
+  padding: 2.5rem;
+  border-radius: 12px;
 }
 
-.hero__bg-radials {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 55% at 50% 115%, rgba(26, 107, 255, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 12% 78%, rgba(0, 200, 150, 0.05) 0%, transparent 60%);
-}
-
-.hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--max-w);
-  margin-inline: auto;
-  padding-inline: var(--page-margin);
-  margin-top: auto;
-}
-
-.hero__headline {
-  font-family: var(--f-display);
-  font-size: var(--fs-hero);
-  font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: var(--t-primary);
-  margin-bottom: var(--sp-10);
-  max-width: 940px;
-}
-
-/* ── Stats bar — Fixing the "Bunching" issue ── */
-.hero__stats, .stats-bar {
+.step-header {
   display: flex;
-  align-items: stretch;
-  margin-top: var(--sp-10);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--c-border);
-  border-radius: var(--r-lg);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-}
-
-.hero__stat, .stat-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: var(--sp-6);
-  border-right: 1px solid var(--c-border);
-  text-align: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.hero__stat:last-child { border-right: none; }
-
-.hero__stat-value, .stat-item span {
-  font-family: var(--f-display);
-  font-size: clamp(var(--fs-28), 4vw, var(--fs-48));
-  color: var(--t-primary);
-  line-height: 1;
-}
-
-.hero__stat-label {
-  font-family: var(--f-mono);
-  font-size: var(--fs-10);
-  color: var(--t-muted);
-  text-transform: uppercase;
-  margin-top: var(--sp-2);
-}
-
-/* ── Responsive Fixes ── */
-@media (max-width: 900px) {
-  .hero__bottom {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-8);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero__stats, .stats-bar {
-    flex-direction: column; /* Vertical stack on mobile */
-  }
-
-  .hero__stat, .stat-item {
-    border-right: none;
-    border-bottom: 1px solid var(--c-border);
-    padding: var(--sp-5);
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .hero__stat:last-child { border-bottom: none; }
-  
-  .hero__stat-label { margin-top: 0; }
-}
+.step-num { font-family: 'Space Mono'; font-size: 1.5rem; font-weight: 700; }
+.step-item h3 { font-size: 1.4rem; }
+.step-item p { color: var(--text-muted); font-size: 1rem; }
