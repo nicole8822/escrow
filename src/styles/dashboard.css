@@ -3,11 +3,13 @@
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
   padding: 40px 0;
+  align-items: start;
 }
 
 .trade-card {
   padding: 2rem;
   margin-bottom: 1rem;
+  text-align: left;
 }
 
 .security-card {
@@ -26,4 +28,74 @@
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--text-muted);
+}
+
+/* --- HEAD TO TOE ALIGNMENT UPGRADES --- */
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-sidebar {
+  position: sticky;
+  top: 120px; /* Aligns with container padding */
+}
+
+.trade-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.trade-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.trade-finances {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-width: 180px;
+}
+
+.trade-meta {
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+.status-pill {
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wallet-stats {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.glass-card__divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  width: 100%;
+}
+
+/* Responsive Handling */
+@media (max-width: 992px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-sidebar {
+    position: static;
+    order: -1; /* Identity score moves to top on mobile */
+  }
 }

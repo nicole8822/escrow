@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/glass.css';
 
 const CreateTrade = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [error, setError] = useState('');
   const [vaultLink, setVaultLink] = useState('');
@@ -383,16 +385,31 @@ const CreateTrade = () => {
               <p className="mono" style={{ fontSize: '0.6rem', marginTop: '0.5rem', opacity: 0.5 }}>INVITE_QR_STAMP</p>
             </div>
 
-            <button
-              className="btn-ingot"
-              style={{ width: '100%' }}
-              onClick={() => {
-                navigator.clipboard.writeText(vaultLink);
-                triggerNotify("LINK_COPIED_TO_CLIPBOARD");
-              }}
-            >
-              Copy Protocol Invite
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <button
+                className="btn-ingot"
+                style={{ width: '100%' }}
+                onClick={() => {
+                  navigator.clipboard.writeText(vaultLink);
+                  triggerNotify("LINK_COPIED_TO_CLIPBOARD");
+                }}
+              >
+                Copy Protocol Invite
+              </button>
+              
+              <button
+                className="btn-ingot"
+                style={{ 
+                  width: '100%', 
+                  background: 'transparent', 
+                  border: '1px solid var(--color-gold)', 
+                  color: 'var(--color-gold)' 
+                }}
+                onClick={() => navigate('/dashboard')}
+              >
+                Proceed to Dashboard
+              </button>
+            </div>
             
             <p className="mono" style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.6rem', opacity: 0.4 }}>
               Vault Expires in: <span style={{ color: timeLeft < 300 ? 'var(--color-danger)' : 'var(--color-gold)' }}>{formatTime(timeLeft)}</span>
